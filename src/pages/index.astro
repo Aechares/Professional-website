@@ -10,6 +10,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
 			:root {
 				--bg-dark: #0a0e27;
 				--bg-darker: #050811;
@@ -19,11 +25,26 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				--accent-hover: #00b8d4;
 			}
 
+			html {
+				background-color: var(--bg-darker);
+			}
+
 			body {
-				background-color: var(--bg-dark);
+				background-color: var(--bg-darker);
 				color: var(--text-light);
 				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 				line-height: 1.6;
+				margin: 0;
+				padding: 0;
+			}
+
+			main {
+				background-color: var(--bg-darker);
+			}
+
+			/* Override any light backgrounds */
+			body, main, section, div, p, h1, h2, h3, h4, h5, h6 {
+				background-color: transparent !important;
 			}
 
 			.hero {
@@ -34,13 +55,17 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				padding: 4rem 2rem;
 				max-width: 1000px;
 				margin: 0 auto;
+				background-color: var(--bg-darker);
 			}
 
 			.hero h1 {
 				font-size: 3.5rem;
 				font-weight: 700;
 				margin-bottom: 1rem;
-				color: var(--bg-dark);
+				background: linear-gradient(135deg, #00d4ff, #0084ff);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
 			}
 
 			.hero .subtitle {
@@ -72,11 +97,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				font-weight: 600;
 				transition: all 0.3s ease;
 				border: 2px solid transparent;
+				cursor: pointer;
 			}
 
 			.cta-primary {
 				background-color: var(--accent);
-				color: var(--bg-dark);
+				color: var(--bg-darker);
 			}
 
 			.cta-primary:hover {
@@ -98,6 +124,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				padding: 6rem 2rem;
 				max-width: 1200px;
 				margin: 0 auto;
+				background-color: var(--bg-darker);
 			}
 
 			.section-title {
@@ -211,6 +238,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 			.resume-item {
 				margin-bottom: 2rem;
+				color: var(--text-light);
 			}
 
 			.resume-item:last-child {
@@ -261,15 +289,21 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				border-radius: 8px;
 				text-align: center;
 				border: 1px solid rgba(0, 212, 255, 0.1);
+				color: var(--text-light);
 			}
 
 			.skill-item strong {
 				color: var(--accent);
 			}
 
+			.skill-item span {
+				color: var(--text-muted);
+			}
+
 			.contact-section {
 				text-align: center;
 				padding: 4rem 2rem;
+				background-color: var(--bg-darker);
 			}
 
 			.contact-section p {
@@ -324,9 +358,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			}
 		</style>
 	</head>
-	<body>
+	<body style="background-color: #050811;">
 		<Header />
-		<main>
+		<main style="background-color: #050811;">
 			<!-- HERO SECTION -->
 			<section class="hero">
 				<h1>Henry R. Smith</h1>
@@ -463,27 +497,27 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					<div class="skills-grid">
 						<div class="skill-item">
 							<strong>CAD</strong><br>
-							<span style="font-size: 0.9rem;">SolidWorks, AutoCAD, FreeCAD</span>
+							<span>SolidWorks, AutoCAD, FreeCAD</span>
 						</div>
 						<div class="skill-item">
 							<strong>Simulation</strong><br>
-							<span style="font-size: 0.9rem;">ANSYS, COMSOL, Abaqus</span>
+							<span>ANSYS, COMSOL, Abaqus</span>
 						</div>
 						<div class="skill-item">
 							<strong>Programming</strong><br>
-							<span style="font-size: 0.9rem;">Python, MATLAB, C++</span>
+							<span>Python, MATLAB, C++</span>
 						</div>
 						<div class="skill-item">
 							<strong>Manufacturing</strong><br>
-							<span style="font-size: 0.9rem;">CNC, 3D Printing, Machining</span>
+							<span>CNC, 3D Printing, Machining</span>
 						</div>
 						<div class="skill-item">
 							<strong>Analysis</strong><br>
-							<span style="font-size: 0.9rem;">FEA, CFD, Structural Analysis</span>
+							<span>FEA, CFD, Structural Analysis</span>
 						</div>
 						<div class="skill-item">
 							<strong>Design</strong><br>
-							<span style="font-size: 0.9rem;">Mechanical Design, Optimization</span>
+							<span>Mechanical Design, Optimization</span>
 						</div>
 					</div>
 				</div>
