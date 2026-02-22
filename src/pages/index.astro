@@ -17,12 +17,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			}
 
 			:root {
-				--bg-dark: #0a0e27;
-				--bg-darker: #050811;
-				--text-light: #e0e0e0;
-				--text-muted: #a0a0a0;
-				--accent: #00d4ff;
-				--accent-hover: #00b8d4;
+					--bg-dark: #0a0e27;
+					--bg-darker: #050811;
+					--text-light: #e0e0e0;
+					--text-muted: #a0a0a0;
+					--accent: #ffffff;           /* Changed from #00d4ff to white */
+					--accent-hover: #e0e0e0;     /* Changed from #00b8d4 to light gray */
+				}
 			}
 
 			html {
@@ -62,10 +63,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				font-size: 3.5rem;
 				font-weight: 700;
 				margin-bottom: 1rem;
-				background: var(--bg-darker);
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
-				background-clip: text;
+				color: #ffffff;              /* Changed: removed gradient, now white */
 			}
 
 			.hero .subtitle {
