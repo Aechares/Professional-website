@@ -9,42 +9,502 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			:root {
+				--bg-dark: #0a0e27;
+				--bg-darker: #050811;
+				--text-light: #e0e0e0;
+				--text-muted: #a0a0a0;
+				--accent: #00d4ff;
+				--accent-hover: #00b8d4;
+			}
+
+			body {
+				background-color: var(--bg-dark);
+				color: var(--text-light);
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				line-height: 1.6;
+			}
+
+			.hero {
+				min-height: 70vh;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				padding: 4rem 2rem;
+				max-width: 1000px;
+				margin: 0 auto;
+			}
+
+			.hero h1 {
+				font-size: 3.5rem;
+				font-weight: 700;
+				margin-bottom: 1rem;
+				background: linear-gradient(135deg, #00d4ff, #0084ff);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+
+			.hero .subtitle {
+				font-size: 1.3rem;
+				color: var(--text-muted);
+				margin-bottom: 2rem;
+				max-width: 600px;
+			}
+
+			.hero .description {
+				font-size: 1.05rem;
+				color: var(--text-light);
+				max-width: 700px;
+				line-height: 1.8;
+				margin-bottom: 3rem;
+			}
+
+			.cta-buttons {
+				display: flex;
+				gap: 1rem;
+				margin-bottom: 4rem;
+				flex-wrap: wrap;
+			}
+
+			.cta-button {
+				padding: 0.75rem 1.5rem;
+				border-radius: 6px;
+				text-decoration: none;
+				font-weight: 600;
+				transition: all 0.3s ease;
+				border: 2px solid transparent;
+			}
+
+			.cta-primary {
+				background-color: var(--accent);
+				color: var(--bg-dark);
+			}
+
+			.cta-primary:hover {
+				background-color: var(--accent-hover);
+				transform: translateY(-2px);
+			}
+
+			.cta-secondary {
+				background-color: transparent;
+				color: var(--accent);
+				border-color: var(--accent);
+			}
+
+			.cta-secondary:hover {
+				background-color: rgba(0, 212, 255, 0.1);
+			}
+
+			section {
+				padding: 6rem 2rem;
+				max-width: 1200px;
+				margin: 0 auto;
+			}
+
+			.section-title {
+				font-size: 2rem;
+				font-weight: 700;
+				margin-bottom: 3rem;
+				color: var(--text-light);
+				position: relative;
+				padding-bottom: 1rem;
+			}
+
+			.section-title::after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 60px;
+				height: 4px;
+				background: linear-gradient(90deg, var(--accent), transparent);
+				border-radius: 2px;
+			}
+
+			.projects-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 2rem;
+				margin-bottom: 3rem;
+			}
+
+			.project-card {
+				background: rgba(255, 255, 255, 0.05);
+				border-radius: 12px;
+				overflow: hidden;
+				transition: all 0.3s ease;
+				border: 1px solid rgba(0, 212, 255, 0.1);
+				cursor: pointer;
+				text-decoration: none;
+				color: inherit;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.project-card:hover {
+				background: rgba(255, 255, 255, 0.08);
+				border-color: rgba(0, 212, 255, 0.3);
+				transform: translateY(-8px);
+				box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+			}
+
+			.project-thumbnail {
+				width: 100%;
+				height: 200px;
+				background: linear-gradient(135deg, #1a1f3a, #0f1428);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 3rem;
+				overflow: hidden;
+			}
+
+			.project-thumbnail img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			.project-info {
+				padding: 1.5rem;
+				flex-grow: 1;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.project-title {
+				font-size: 1.25rem;
+				font-weight: 700;
+				margin-bottom: 0.5rem;
+				color: var(--text-light);
+			}
+
+			.project-description {
+				font-size: 0.95rem;
+				color: var(--text-muted);
+				margin-bottom: 1rem;
+				flex-grow: 1;
+			}
+
+			.project-tags {
+				display: flex;
+				gap: 0.5rem;
+				flex-wrap: wrap;
+				margin-top: auto;
+			}
+
+			.tag {
+				background: rgba(0, 212, 255, 0.1);
+				color: var(--accent);
+				padding: 0.25rem 0.75rem;
+				border-radius: 20px;
+				font-size: 0.8rem;
+				font-weight: 600;
+			}
+
+			.resume-section {
+				background: rgba(255, 255, 255, 0.02);
+				border: 1px solid rgba(0, 212, 255, 0.1);
+				border-radius: 12px;
+				padding: 2rem;
+				margin-bottom: 2rem;
+			}
+
+			.resume-item {
+				margin-bottom: 2rem;
+			}
+
+			.resume-item:last-child {
+				margin-bottom: 0;
+			}
+
+			.resume-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				margin-bottom: 0.5rem;
+				flex-wrap: wrap;
+				gap: 1rem;
+			}
+
+			.resume-title {
+				font-size: 1.1rem;
+				font-weight: 700;
+				color: var(--text-light);
+			}
+
+			.resume-subtitle {
+				color: var(--accent);
+				font-weight: 600;
+			}
+
+			.resume-date {
+				color: var(--text-muted);
+				font-size: 0.9rem;
+			}
+
+			.resume-description {
+				color: var(--text-muted);
+				margin-top: 0.5rem;
+				line-height: 1.6;
+			}
+
+			.skills-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+				gap: 1rem;
+				margin-top: 1.5rem;
+			}
+
+			.skill-item {
+				background: rgba(0, 212, 255, 0.05);
+				padding: 1rem;
+				border-radius: 8px;
+				text-align: center;
+				border: 1px solid rgba(0, 212, 255, 0.1);
+			}
+
+			.skill-item strong {
+				color: var(--accent);
+			}
+
+			.contact-section {
+				text-align: center;
+				padding: 4rem 2rem;
+			}
+
+			.contact-section p {
+				font-size: 1.1rem;
+				color: var(--text-muted);
+				margin-bottom: 2rem;
+				max-width: 600px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.social-links {
+				display: flex;
+				gap: 1.5rem;
+				justify-content: center;
+				flex-wrap: wrap;
+			}
+
+			.social-link {
+				color: var(--accent);
+				text-decoration: none;
+				font-weight: 600;
+				transition: all 0.3s ease;
+				border-bottom: 2px solid transparent;
+			}
+
+			.social-link:hover {
+				border-bottom-color: var(--accent);
+				color: var(--accent-hover);
+			}
+
+			@media (max-width: 768px) {
+				.hero h1 {
+					font-size: 2.5rem;
+				}
+
+				.hero .subtitle {
+					font-size: 1.1rem;
+				}
+
+				section {
+					padding: 4rem 1.5rem;
+				}
+
+				.section-title {
+					font-size: 1.5rem;
+				}
+
+				.projects-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<img src="/IMG_7183.jpg" alt="Professional headshot" />
-			<h1>Website for Henry R. Smith, MIT MechE '25</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<!-- HERO SECTION -->
+			<section class="hero">
+				<h1>Henry R. Smith</h1>
+				<p class="subtitle">MIT MechE '25 | Mechanical Engineering & Innovation</p>
+				<p class="description">
+					Welcome to my engineering portfolio. I'm passionate about designing innovative solutions to 
+					complex mechanical problems. Below you'll find my featured projects, professional experience, 
+					and technical skills.
+				</p>
+				<div class="cta-buttons">
+					<a href="#projects" class="cta-button cta-primary">View Projects</a>
+					<a href="#resume" class="cta-button cta-secondary">My Resume</a>
+				</div>
+			</section>
+
+			<!-- FEATURED PROJECTS SECTION -->
+			<section id="projects">
+				<h2 class="section-title">Featured Projects</h2>
+				<div class="projects-grid">
+					<!-- Project 1 -->
+					<a href="/projects/project-1" class="project-card">
+						<div class="project-thumbnail">
+							<img src="/projects/project-1-thumb.jpg" alt="Project 1" />
+						</div>
+						<div class="project-info">
+							<h3 class="project-title">Autonomous Robotic Arm</h3>
+							<p class="project-description">
+								Designed and fabricated a 6-DOF robotic arm with precision control and computer vision integration.
+							</p>
+							<div class="project-tags">
+								<span class="tag">Robotics</span>
+								<span class="tag">CAD</span>
+								<span class="tag">Control Systems</span>
+							</div>
+						</div>
+					</a>
+
+					<!-- Project 2 -->
+					<a href="/projects/project-2" class="project-card">
+						<div class="project-thumbnail">
+							<img src="/projects/project-2-thumb.jpg" alt="Project 2" />
+						</div>
+						<div class="project-info">
+							<h3 class="project-title">Thermal Analysis & Design</h3>
+							<p class="project-description">
+								Comprehensive CFD simulation and thermal management optimization for heat exchanger design.
+							</p>
+							<div class="project-tags">
+								<span class="tag">CFD</span>
+								<span class="tag">ANSYS</span>
+								<span class="tag">Simulation</span>
+							</div>
+						</div>
+					</a>
+
+					<!-- Project 3 -->
+					<a href="/projects/project-3" class="project-card">
+						<div class="project-thumbnail">
+							<img src="/projects/project-3-thumb.jpg" alt="Project 3" />
+						</div>
+						<div class="project-info">
+							<h3 class="project-title">Structural Optimization</h3>
+							<p class="project-description">
+								Advanced FEA and topology optimization for lightweight aerospace component design.
+							</p>
+							<div class="project-tags">
+								<span class="tag">FEA</span>
+								<span class="tag">Optimization</span>
+								<span class="tag">Aerospace</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</section>
+
+			<!-- RESUME SECTION -->
+			<section id="resume">
+				<h2 class="section-title">Experience & Education</h2>
+
+				<!-- Education -->
+				<div class="resume-section">
+					<h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--accent);">Education</h3>
+					<div class="resume-item">
+						<div class="resume-header">
+							<div>
+								<div class="resume-title">Massachusetts Institute of Technology</div>
+								<div class="resume-subtitle">B.S. Mechanical Engineering</div>
+							</div>
+							<div class="resume-date">Expected 2025</div>
+						</div>
+						<p class="resume-description">
+							Coursework: Advanced Dynamics, Control Systems, Finite Element Analysis, Thermodynamics, 
+							Fluid Mechanics, Machine Design
+						</p>
+					</div>
+				</div>
+
+				<!-- Experience -->
+				<div class="resume-section">
+					<h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--accent);">Professional Experience</h3>
+					<div class="resume-item">
+						<div class="resume-header">
+							<div>
+								<div class="resume-title">Engineering Intern</div>
+								<div class="resume-subtitle">Company Name</div>
+							</div>
+							<div class="resume-date">Summer 2024</div>
+						</div>
+						<p class="resume-description">
+							• Designed and analyzed mechanical components using CAD and FEA<br>
+							• Conducted thermal simulations and optimization studies<br>
+							• Collaborated with cross-functional teams on product development
+						</p>
+					</div>
+					<div class="resume-item">
+						<div class="resume-header">
+							<div>
+								<div class="resume-title">Research Assistant</div>
+								<div class="resume-subtitle">MIT Mechanical Engineering Lab</div>
+							</div>
+							<div class="resume-date">2023 - Present</div>
+						</div>
+						<p class="resume-description">
+							• Conducted experimental research in advanced materials and manufacturing<br>
+							• Developed MATLAB scripts for data analysis and visualization<br>
+							• Contributed to published research papers
+						</p>
+					</div>
+				</div>
+
+				<!-- Skills -->
+				<div class="resume-section">
+					<h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--accent);">Technical Skills</h3>
+					<div class="skills-grid">
+						<div class="skill-item">
+							<strong>CAD</strong><br>
+							<span style="font-size: 0.9rem;">SolidWorks, AutoCAD, FreeCAD</span>
+						</div>
+						<div class="skill-item">
+							<strong>Simulation</strong><br>
+							<span style="font-size: 0.9rem;">ANSYS, COMSOL, Abaqus</span>
+						</div>
+						<div class="skill-item">
+							<strong>Programming</strong><br>
+							<span style="font-size: 0.9rem;">Python, MATLAB, C++</span>
+						</div>
+						<div class="skill-item">
+							<strong>Manufacturing</strong><br>
+							<span style="font-size: 0.9rem;">CNC, 3D Printing, Machining</span>
+						</div>
+						<div class="skill-item">
+							<strong>Analysis</strong><br>
+							<span style="font-size: 0.9rem;">FEA, CFD, Structural Analysis</span>
+						</div>
+						<div class="skill-item">
+							<strong>Design</strong><br>
+							<span style="font-size: 0.9rem;">Mechanical Design, Optimization</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- CONTACT SECTION -->
+			<section id="contact" class="contact-section">
+				<h2 class="section-title" style="text-align: center; margin-left: auto; margin-right: auto;">Get In Touch</h2>
+				<p>
+					I'm always interested in hearing about new projects and opportunities. Feel free to reach out!
+				</p>
+				<div class="social-links">
+					<a href="mailto:henry@example.com" class="social-link">Email</a>
+					<a href="https://linkedin.com" class="social-link">LinkedIn</a>
+					<a href="https://github.com" class="social-link">GitHub</a>
+					<a href="/resume.pdf" class="social-link">Download Resume</a>
+				</div>
+			</section>
 		</main>
 		<Footer />
 	</body>
