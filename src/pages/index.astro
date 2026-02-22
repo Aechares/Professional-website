@@ -55,7 +55,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				padding: 4rem 2rem;
 				max-width: 1000px;
 				margin: 0 auto;
-				background-color: var(--bg-darker);
+				background-color: #050811 !important;
+				background-image: none !important;
+				background: #050811 !important;
 			}
 
 			.hero h1 {
@@ -74,7 +76,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				margin-bottom: 2rem;
 				max-width: 600px;
 			}
-
+			.hero::before {
+				display: none !important;
+			}
+			
+			.hero::after {
+				display: none !important;
+			}
 			.hero .description {
 				font-size: 1.05rem;
 				color: var(--text-light);
