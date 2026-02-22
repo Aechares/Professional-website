@@ -10,42 +10,20 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-			}
-
 			:root {
-					--bg-dark: #0a0e27;
-					--bg-darker: #050811;
-					--text-light: #e0e0e0;
-					--text-muted: #a0a0a0;
-					--accent: #015087;           /* Changed from #00d4ff to white */
-					--accent-hover: #e0e0e0;     /* Changed from #00b8d4 to light gray */
-				}
-			}
-
-			html {
-				background-color: var(--bg-darker);
+				--bg-dark: #0a0e27;
+				--bg-darker: #050811;
+				--text-light: #e0e0e0;
+				--text-muted: #a0a0a0;
+				--accent: #00d4ff;
+				--accent-hover: #00b8d4;
 			}
 
 			body {
-				background-color: var(--bg-darker);
+				background-color: var(--bg-dark);
 				color: var(--text-light);
 				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 				line-height: 1.6;
-				margin: 0;
-				padding: 0;
-			}
-
-			main {
-				background-color: var(--bg-darker);
-			}
-
-			/* Override any light backgrounds */
-			body, main, section, div, p, h1, h2, h3, h4, h5, h6 {
-				background-color: transparent !important;
 			}
 
 			.hero {
@@ -56,14 +34,16 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				padding: 4rem 2rem;
 				max-width: 1000px;
 				margin: 0 auto;
-				background-color: var(--bg-darker);
 			}
 
 			.hero h1 {
 				font-size: 3.5rem;
 				font-weight: 700;
 				margin-bottom: 1rem;
-				color: #015087;              /* Changed: removed gradient, now white */
+				background: linear-gradient(135deg, #00d4ff, #0084ff);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
 			}
 
 			.hero .subtitle {
@@ -95,12 +75,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				font-weight: 600;
 				transition: all 0.3s ease;
 				border: 2px solid transparent;
-				cursor: pointer;
 			}
 
 			.cta-primary {
 				background-color: var(--accent);
-				color: var(--bg-darker);
+				color: var(--bg-dark);
 			}
 
 			.cta-primary:hover {
@@ -122,7 +101,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				padding: 6rem 2rem;
 				max-width: 1200px;
 				margin: 0 auto;
-				background-color: var(--bg-darker);
 			}
 
 			.section-title {
@@ -236,7 +214,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 			.resume-item {
 				margin-bottom: 2rem;
-				color: var(--text-light);
 			}
 
 			.resume-item:last-child {
@@ -287,21 +264,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				border-radius: 8px;
 				text-align: center;
 				border: 1px solid rgba(0, 212, 255, 0.1);
-				color: var(--text-light);
 			}
 
 			.skill-item strong {
 				color: var(--accent);
 			}
 
-			.skill-item span {
-				color: var(--text-muted);
-			}
-
 			.contact-section {
 				text-align: center;
 				padding: 4rem 2rem;
-				background-color: var(--bg-darker);
 			}
 
 			.contact-section p {
@@ -356,13 +327,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			}
 		</style>
 	</head>
-	<body style="background-color: #050811;">
+	<body>
 		<Header />
-		<main style="background-color: #050811;">
+		<main>
 			<!-- HERO SECTION -->
 			<section class="hero">
 				<h1>Henry R. Smith</h1>
-				<p class="subtitle">MIT MechE S.B. '25, S.M. '27 | Mechanical Engineering</p>
+				<p class="subtitle">MIT MechE '25 | Mechanical Engineering & Innovation</p>
 				<p class="description">
 					Welcome to my engineering portfolio. I'm passionate about designing innovative solutions to 
 					complex mechanical problems. Below you'll find my featured projects, professional experience, 
@@ -495,27 +466,27 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					<div class="skills-grid">
 						<div class="skill-item">
 							<strong>CAD</strong><br>
-							<span>SolidWorks, AutoCAD, FreeCAD</span>
+							<span style="font-size: 0.9rem;">SolidWorks, AutoCAD, FreeCAD</span>
 						</div>
 						<div class="skill-item">
 							<strong>Simulation</strong><br>
-							<span>ANSYS, COMSOL, Abaqus</span>
+							<span style="font-size: 0.9rem;">ANSYS, COMSOL, Abaqus</span>
 						</div>
 						<div class="skill-item">
 							<strong>Programming</strong><br>
-							<span>Python, MATLAB, C++</span>
+							<span style="font-size: 0.9rem;">Python, MATLAB, C++</span>
 						</div>
 						<div class="skill-item">
 							<strong>Manufacturing</strong><br>
-							<span>CNC, 3D Printing, Machining</span>
+							<span style="font-size: 0.9rem;">CNC, 3D Printing, Machining</span>
 						</div>
 						<div class="skill-item">
 							<strong>Analysis</strong><br>
-							<span>FEA, CFD, Structural Analysis</span>
+							<span style="font-size: 0.9rem;">FEA, CFD, Structural Analysis</span>
 						</div>
 						<div class="skill-item">
 							<strong>Design</strong><br>
-							<span>Mechanical Design, Optimization</span>
+							<span style="font-size: 0.9rem;">Mechanical Design, Optimization</span>
 						</div>
 					</div>
 				</div>
