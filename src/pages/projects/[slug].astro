@@ -40,10 +40,17 @@ const { title, subtitle, summary, tags, highlights, images } = project;
 			}
 
 			body {
-				background-color: var(--bg-darker);
+				background: var(--bg-darker) !important;
 				color: var(--text-light);
 				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 				line-height: 1.6;
+			}
+
+			main {
+				width: 100%;
+				max-width: none;
+				margin: 0;
+				padding: 0;
 			}
 
 			body,
