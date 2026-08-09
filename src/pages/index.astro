@@ -3,6 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { projects } from '../data/projects';
 ---
 
 <!doctype html>
@@ -430,59 +431,20 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			<section id="projects">
 				<h2 class="section-title">Featured Projects</h2>
 				<div class="projects-grid">
-					<!-- Project 1 -->
-					<a href="/projects/project-1" class="project-card">
-						<div class="project-thumbnail">
-							<img src="/projects/project-1-thumb.jpg" alt="Project 1" />
-						</div>
-						<div class="project-info">
-							<h3 class="project-title">Autonomous Robotic Arm</h3>
-							<p class="project-description">
-								Designed and fabricated a 6-DOF robotic arm with precision control and computer vision integration.
-							</p>
-							<div class="project-tags">
-								<span class="tag">Robotics</span>
-								<span class="tag">CAD</span>
-								<span class="tag">Control Systems</span>
+					{projects.map((project) => (
+						<a href={`/projects/${project.slug}`} class="project-card">
+							<div class="project-thumbnail">
+								<img src={project.images[0].src} alt={project.images[0].alt} />
 							</div>
-						</div>
-					</a>
-
-					<!-- Project 2 -->
-					<a href="/projects/project-2" class="project-card">
-						<div class="project-thumbnail">
-							<img src="/projects/project-2-thumb.jpg" alt="Project 2" />
-						</div>
-						<div class="project-info">
-							<h3 class="project-title">Thermal Analysis & Design</h3>
-							<p class="project-description">
-								Comprehensive CFD simulation and thermal management optimization for heat exchanger design.
-							</p>
-							<div class="project-tags">
-								<span class="tag">CFD</span>
-								<span class="tag">ANSYS</span>
-								<span class="tag">Simulation</span>
+							<div class="project-info">
+								<h3 class="project-title">{project.title}</h3>
+								<p class="project-description">{project.summary}</p>
+								<div class="project-tags">
+									{project.tags.map((tag) => <span class="tag">{tag}</span>)}
+								</div>
 							</div>
-						</div>
-					</a>
-
-					<!-- Project 3 -->
-					<a href="/projects/project-3" class="project-card">
-						<div class="project-thumbnail">
-							<img src="/projects/project-3-thumb.jpg" alt="Project 3" />
-						</div>
-						<div class="project-info">
-							<h3 class="project-title">Structural Optimization</h3>
-							<p class="project-description">
-								Advanced FEA and topology optimization for lightweight aerospace component design.
-							</p>
-							<div class="project-tags">
-								<span class="tag">FEA</span>
-								<span class="tag">Optimization</span>
-								<span class="tag">Aerospace</span>
-							</div>
-						</div>
-					</a>
+						</a>
+					))}
 				</div>
 			</section>
 
