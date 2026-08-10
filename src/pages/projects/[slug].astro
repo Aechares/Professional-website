@@ -164,12 +164,130 @@ const { title, subtitle, summary, tags, highlights, images } = project;
 				width: 100%;
 				height: auto;
 				display: block;
+				cursor: zoom-in;
+				transition: opacity 0.2s ease;
+			}
+
+			figure img:hover {
+				opacity: 0.85;
 			}
 
 			figcaption {
 				padding: 1rem 1.25rem;
 				color: var(--text-muted);
 				font-size: 0.9rem;
+			}
+
+			.lightbox {
+				position: fixed;
+				inset: 0;
+				background: rgba(5, 8, 17, 0.94) !important;
+				z-index: 1000;
+				display: none;
+				align-items: center;
+				justify-content: center;
+				padding: 3rem 5rem;
+			}
+
+			.lightbox.is-open {
+				display: flex;
+			}
+
+			.lightbox-figure {
+				max-width: 100%;
+				max-height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.lightbox-figure img {
+				max-width: 100%;
+				max-height: 78vh;
+				object-fit: contain;
+				border-radius: 8px;
+				display: block;
+			}
+
+			.lightbox-figure figcaption {
+				color: var(--text-muted);
+				text-align: center;
+				max-width: 700px;
+				padding: 1.25rem 1rem 0;
+			}
+
+			.lightbox-close,
+			.lightbox-prev,
+			.lightbox-next {
+				position: absolute;
+				background: rgba(255, 255, 255, 0.08);
+				border: 1px solid rgba(0, 212, 255, 0.2);
+				color: var(--text-light);
+				cursor: pointer;
+				border-radius: 8px;
+				transition: background 0.2s ease;
+			}
+
+			.lightbox-close:hover,
+			.lightbox-prev:hover,
+			.lightbox-next:hover {
+				background: rgba(0, 212, 255, 0.15);
+			}
+
+			.lightbox-close {
+				top: 1.5rem;
+				right: 1.5rem;
+				width: 44px;
+				height: 44px;
+				font-size: 1.5rem;
+				line-height: 1;
+			}
+
+			.lightbox-prev,
+			.lightbox-next {
+				top: 50%;
+				transform: translateY(-50%);
+				width: 48px;
+				height: 48px;
+				font-size: 1.75rem;
+			}
+
+			.lightbox-prev {
+				left: 1.5rem;
+			}
+
+			.lightbox-next {
+				right: 1.5rem;
+			}
+
+			.lightbox-counter {
+				position: absolute;
+				bottom: 1.5rem;
+				left: 50%;
+				transform: translateX(-50%);
+				color: var(--text-muted);
+				font-size: 0.9rem;
+			}
+
+			@media (max-width: 768px) {
+				.lightbox {
+					padding: 4.5rem 1rem 2rem;
+				}
+
+				.lightbox-prev,
+				.lightbox-next {
+					width: 40px;
+					height: 40px;
+					font-size: 1.4rem;
+				}
+
+				.lightbox-prev {
+					left: 0.5rem;
+				}
+
+				.lightbox-next {
+					right: 0.5rem;
+				}
 			}
 
 			@media (max-width: 768px) {
@@ -207,14 +325,83 @@ const { title, subtitle, summary, tags, highlights, images } = project;
 				</ul>
 			</div>
 			<div class="gallery">
-				{images.map((img) => (
+				{images.map((img, index) => (
 					<figure>
-						<img src={img.src} alt={img.alt} loading="lazy" />
+						<img src={img.src} alt={img.alt} loading="lazy" data-lightbox-trigger data-index={index} />
 						{img.caption && <figcaption>{img.caption}</figcaption>}
 					</figure>
 				))}
 			</div>
 		</main>
 		<Footer />
+
+		<div class="lightbox" id="lightbox">
+			<button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+			<button class="lightbox-prev" id="lightbox-prev" aria-label="Previous image">&#8249;</button>
+			<button class="lightbox-next" id="lightbox-next" aria-label="Next image">&#8250;</button>
+			<figure class="lightbox-figure">
+				<img id="lightbox-img" src="" alt="" />
+				<figcaption id="lightbox-caption"></figcaption>
+			</figure>
+			<div class="lightbox-counter" id="lightbox-counter"></div>
+		</div>
 	</body>
 </html>
+
+<script>
+	const images = Array.from(document.querySelectorAll<HTMLImageElement>('[data-lightbox-trigger]'));
+	const lightbox = document.getElementById('lightbox')!;
+	const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+	const lightboxCaption = document.getElementById('lightbox-caption')!;
+	const lightboxCounter = document.getElementById('lightbox-counter')!;
+	const closeBtn = document.getElementById('lightbox-close')!;
+	const prevBtn = document.getElementById('lightbox-prev')!;
+	const nextBtn = document.getElementById('lightbox-next')!;
+
+	let currentIndex = 0;
+
+	function show(index: number) {
+		currentIndex = (index + images.length) % images.length;
+		const img = images[currentIndex];
+		const figcaption = img.closest('figure')?.querySelector('figcaption');
+		lightboxImg.src = img.src;
+		lightboxImg.alt = img.alt;
+		lightboxCaption.textContent = figcaption ? figcaption.textContent : '';
+		lightboxCounter.textContent = images.length > 1 ? `${currentIndex + 1} / ${images.length}` : '';
+	}
+
+	function open(index: number) {
+		show(index);
+		lightbox.classList.add('is-open');
+		document.body.style.overflow = 'hidden';
+	}
+
+	function close() {
+		lightbox.classList.remove('is-open');
+		document.body.style.overflow = '';
+	}
+
+	images.forEach((img, index) => {
+		img.addEventListener('click', () => open(index));
+	});
+
+	closeBtn.addEventListener('click', close);
+	prevBtn.addEventListener('click', () => show(currentIndex - 1));
+	nextBtn.addEventListener('click', () => show(currentIndex + 1));
+
+	lightbox.addEventListener('click', (e) => {
+		if (e.target === lightbox) close();
+	});
+
+	document.addEventListener('keydown', (e) => {
+		if (!lightbox.classList.contains('is-open')) return;
+		if (e.key === 'Escape') close();
+		if (e.key === 'ArrowLeft') show(currentIndex - 1);
+		if (e.key === 'ArrowRight') show(currentIndex + 1);
+	});
+
+	if (images.length <= 1) {
+		prevBtn.style.display = 'none';
+		nextBtn.style.display = 'none';
+	}
+</script>
