@@ -288,6 +288,28 @@ import { projects } from '../data/projects';
 				left: 0;
 			}
 
+			.timeline-year {
+				position: absolute;
+				top: 1.7rem;
+				font-size: 1.05rem;
+				font-weight: 700;
+				letter-spacing: 0.02em;
+				color: var(--text-muted);
+				white-space: nowrap;
+			}
+
+			.timeline-item:nth-child(odd) .timeline-year {
+				left: 100%;
+				margin-left: 3.25rem;
+				text-align: left;
+			}
+
+			.timeline-item:nth-child(even) .timeline-year {
+				right: 100%;
+				margin-right: 3.25rem;
+				text-align: right;
+			}
+
 			.project-card {
 				background: rgba(255, 255, 255, 0.05);
 				border-radius: 12px;
@@ -407,6 +429,19 @@ import { projects } from '../data/projects';
 					width: 1.75rem;
 				}
 
+				.timeline-year,
+				.timeline-item:nth-child(odd) .timeline-year,
+				.timeline-item:nth-child(even) .timeline-year {
+					position: static;
+					display: block;
+					left: auto;
+					right: auto;
+					margin: 0 0 0.3rem 0;
+					text-align: left;
+					color: var(--accent);
+					font-size: 0.85rem;
+				}
+
 				.project-card {
 					gap: 0.85rem;
 				}
@@ -504,6 +539,7 @@ import { projects } from '../data/projects';
 				<div class="timeline">
 					{projects.map((project) => (
 						<div class="timeline-item">
+							<div class="timeline-year">{project.year}</div>
 							<div class="timeline-node"></div>
 							<div class="timeline-connector"></div>
 							<a href={`/projects/${project.slug}`} class="project-card">

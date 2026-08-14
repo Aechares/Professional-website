@@ -14,6 +14,7 @@ export interface Project {
 	title: string;
 	subtitle: string;
 	summary: string;
+	year: string;
 	tags: string[];
 	highlights: string[];
 	images: ProjectImage[];
@@ -22,11 +23,36 @@ export interface Project {
 
 export const projects: Project[] = [
 	{
+		slug: 'precision-resupply',
+		title: 'EIGSS: Precision Resupply',
+		subtitle: 'DART — Denied Area Resupply Tool',
+		summary:
+			'Designed and tested a high-speed, airbag-cushioned resupply vehicle for GPS-denied environments, reducing payload impact deceleration by 85%.',
+		year: '2026',
+		tags: ['Aerospace', 'Impact Dynamics', 'Testing'],
+		highlights: [
+			'Built a physics trajectory model (heating, atmosphere, lift/drag, force balance) to size the vehicle for Mach 2 entry and long standoff range',
+			'Derived a coupled ODE model (Navier-Stokes mass flow, energy conservation, 2nd law kinematics, ideal gas law) for airbag impact attenuation',
+			'Built and drop-tested a physical airbag rig, cutting peak deceleration from 72G to 12G',
+			'Validated the simulation against real drop-test data to within 43%',
+		],
+		images: [
+			{ src: '/projects/precision-resupply/01-dart-cutaway.jpg', alt: 'DART vehicle cutaway diagram', caption: 'Cutaway of the DART vehicle showing internal payload bays' },
+			{ src: '/projects/precision-resupply/02-drone-tracking-test.jpg', alt: 'Drone tracking software during a field test', caption: 'Vision tracking during an outdoor drop test' },
+			{ src: '/projects/precision-resupply/03-airbag-hang-test.jpg', alt: 'Airbag payload rig hanging in a net', caption: 'Airbag impact-attenuation payload rigged for drop testing' },
+			{ src: '/projects/precision-resupply/04-range-sensitivity-map.jpg', alt: 'Range sensitivity map', caption: 'Range sensitivity to starting altitude and velocity (cL/cD = 10)' },
+			{ src: '/projects/precision-resupply/05-requirements-sensitivity.jpg', alt: 'Requirements sensitivity map with platform icons', caption: 'Mapping platform options (rocket, aircraft, satellite) onto the range sensitivity map' },
+			{ src: '/projects/precision-resupply/06-deceleration-bar-chart.jpg', alt: 'Bar chart of peak deceleration by airbag configuration', caption: 'Peak deceleration reduced from 72G to 12G with the airbag' },
+			{ src: '/projects/precision-resupply/07-sim-vs-real-data.jpg', alt: 'Simulation vs. real drop-test data chart', caption: 'Simulation tracked real drop-test data within 43%' },
+		],
+	},
+	{
 		slug: 'precision-product-design',
 		title: '2.77: Precision Product Design',
 		subtitle: 'Fold-Out Shipping Container — Fall 2025',
 		summary:
 			"Designed a self-folding shipping container using a 4-bar linkage mechanism, sized its actuators, and validated the concept with a quarter-scale prototype.",
+		year: '2025',
 		tags: ['Precision Design', 'Mechanisms', 'CAD'],
 		highlights: [
 			'Defined functional requirements for a container that folds/unfolds in under 10 minutes while surviving shipping loads and weather',
@@ -47,34 +73,12 @@ export const projects: Project[] = [
 		],
 	},
 	{
-		slug: 'precision-resupply',
-		title: 'EIGSS: Precision Resupply',
-		subtitle: 'DART — Denied Area Resupply Tool',
-		summary:
-			'Designed and tested a high-speed, airbag-cushioned resupply vehicle for GPS-denied environments, reducing payload impact deceleration by 85%.',
-		tags: ['Aerospace', 'Impact Dynamics', 'Testing'],
-		highlights: [
-			'Built a physics trajectory model (heating, atmosphere, lift/drag, force balance) to size the vehicle for Mach 2 entry and long standoff range',
-			'Derived a coupled ODE model (Navier-Stokes mass flow, energy conservation, 2nd law kinematics, ideal gas law) for airbag impact attenuation',
-			'Built and drop-tested a physical airbag rig, cutting peak deceleration from 72G to 12G',
-			'Validated the simulation against real drop-test data to within 43%',
-		],
-		images: [
-			{ src: '/projects/precision-resupply/01-dart-cutaway.jpg', alt: 'DART vehicle cutaway diagram', caption: 'Cutaway of the DART vehicle showing internal payload bays' },
-			{ src: '/projects/precision-resupply/02-drone-tracking-test.jpg', alt: 'Drone tracking software during a field test', caption: 'Vision tracking during an outdoor drop test' },
-			{ src: '/projects/precision-resupply/03-airbag-hang-test.jpg', alt: 'Airbag payload rig hanging in a net', caption: 'Airbag impact-attenuation payload rigged for drop testing' },
-			{ src: '/projects/precision-resupply/04-range-sensitivity-map.jpg', alt: 'Range sensitivity map', caption: 'Range sensitivity to starting altitude and velocity (cL/cD = 10)' },
-			{ src: '/projects/precision-resupply/05-requirements-sensitivity.jpg', alt: 'Requirements sensitivity map with platform icons', caption: 'Mapping platform options (rocket, aircraft, satellite) onto the range sensitivity map' },
-			{ src: '/projects/precision-resupply/06-deceleration-bar-chart.jpg', alt: 'Bar chart of peak deceleration by airbag configuration', caption: 'Peak deceleration reduced from 72G to 12G with the airbag' },
-			{ src: '/projects/precision-resupply/07-sim-vs-real-data.jpg', alt: 'Simulation vs. real drop-test data chart', caption: 'Simulation tracked real drop-test data within 43%' },
-		],
-	},
-	{
 		slug: 'undergraduate-research',
 		title: 'Undergraduate Research',
 		subtitle: 'Syringe-Pump 3D Printer for Aluminum-Water Reaction Structures',
 		summary:
 			'Designed and built a custom syringe-pump 3D printer to manufacture water-soluble polymer structures loaded with oxide-free aluminum nanoparticles for hydrogen-generation research.',
+		year: '2024–2025',
 		tags: ['3D Printing', 'CAD', 'Research'],
 		highlights: [
 			'Researched tuning aluminum-water reactions to generate hydrogen on demand',
@@ -96,6 +100,7 @@ export const projects: Project[] = [
 		subtitle: '"Lathe Class" — Precision Mini-Lathe',
 		summary:
 			'Contributed thermal modeling, testing, and housing manufacturing to a team project designing, modeling, and manufacturing a precision lathe accurate to 0.002".',
+		year: '2025',
 		tags: ['Precision Design', 'Thermal Modeling', 'Manufacturing'],
 		highlights: [
 			'Personally responsible for the thermal model and testing, plus housing manufacturing',
@@ -123,6 +128,7 @@ export const projects: Project[] = [
 		subtitle: 'Motorsports Design Intern — Summer 2024, Brooklyn, MI',
 		summary:
 			"Designed endurance race car components for Corvette Racing's IMSA GTD/GTD Pro program, resolving a suspension assembly interference issue from analysis through an accepted design change.",
+		year: '2024',
 		tags: ['Motorsports', 'GD&T', 'FEA'],
 		highlights: [
 			'Diagnosed an anti-roll bar rocker/mount interference issue via tolerance stackup analysis',
@@ -140,6 +146,7 @@ export const projects: Project[] = [
 		subtitle: 'Mechanical Lead, MY24',
 		summary:
 			"Led a 40+ student mechanical team through a full year design-build cycle, fielding MIT's first car to compete in every event since 2019.",
+		year: '2023–2024',
 		tags: ['Leadership', 'Vehicle Design', 'Manufacturing'],
 		highlights: [
 			'Mechanical lead for Model Year 24: 40+ mechanical students plus electrical, software, and aero teams',
@@ -167,6 +174,7 @@ export const projects: Project[] = [
 		subtitle: 'Effect of Material on Electromagnetic Shielding',
 		summary:
 			'Designed and ran a controlled experiment measuring how enclosure materials shield FSAE electronics from motor EMI, finding aluminum tube shielding cut interference by 92%.',
+		year: '2024',
 		tags: ['Experimental Design', 'Statistics', 'EMI'],
 		highlights: [
 			'Communication-intensive class covering experimental design, statistics, and data acquisition',
@@ -184,6 +192,7 @@ export const projects: Project[] = [
 		subtitle: 'Injection-Molded & Thermoformed Yoyos',
 		summary:
 			'Manufactured 100 injection-molded and thermoformed yoyos, learning mass-manufacturing process and quality-control design.',
+		year: '2023',
 		tags: ['Injection Molding', 'DFM', 'Manufacturing'],
 		highlights: [
 			'Designed and machined an injection mold, then ran a 100-unit production batch',
@@ -202,6 +211,7 @@ export const projects: Project[] = [
 		subtitle: 'Competition Robot',
 		summary:
 			"Designed, calculated, and manufactured a competition robot's drivetrain, selecting motor count and gear ratio from torque-speed analysis.",
+		year: '2023',
 		tags: ['Drivetrain Design', 'Manufacturing'],
 		highlights: [
 			'Graphed torque-speed curves across motor counts and gear ratios to select a 1:2 gear ratio for max power and torque',
@@ -221,6 +231,7 @@ export const projects: Project[] = [
 		subtitle: 'Ergonomic Wheelchair — 24-Hour Hackathon',
 		summary:
 			'Built an ergonomic wheelchair attachment in 24 hours, winning the Formlabs Award for most creative 3D print.',
+		year: '2023',
 		tags: ['Hackathon', '3D Printing'],
 		highlights: [
 			'Designed ergonomic handholds 3D-modeled off human fingers',
@@ -237,6 +248,7 @@ export const projects: Project[] = [
 		subtitle: 'Can a Person Punch Down a Tree?',
 		summary:
 			'Built a dual-piston pneumatic fist to test whether a punch could fell a tree. Conclusion: busted — wood is too dense.',
+		year: '2022',
 		tags: ['Pneumatics', 'For Fun'],
 		highlights: [
 			'Designed a dual-piston pneumatic fist with an aluminum striking surface, powered by externally-supplied solenoids',
