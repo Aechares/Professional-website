@@ -12,7 +12,7 @@ export function getStaticPaths() {
 }
 
 const project = Astro.props;
-const { title, subtitle, summary, tags, highlights, images } = project;
+const { title, subtitle, summary, tags, highlights, images, link } = project;
 ---
 
 <!doctype html>
@@ -120,6 +120,20 @@ const { title, subtitle, summary, tags, highlights, images } = project;
 				border-radius: 20px;
 				font-size: 0.8rem;
 				font-weight: 600;
+			}
+
+			.project-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				margin-bottom: 1.5rem;
+				color: var(--accent);
+				text-decoration: none;
+				font-weight: 600;
+			}
+
+			.project-link:hover {
+				color: var(--accent-hover);
 			}
 
 			.highlights-section {
@@ -314,6 +328,11 @@ const { title, subtitle, summary, tags, highlights, images } = project;
 				<h1>{title}</h1>
 				<p class="subtitle">{subtitle}</p>
 				<p class="summary">{summary}</p>
+				{link && (
+					<a href={link.url} class="project-link" target="_blank" rel="noopener noreferrer">
+						{link.label} &rarr;
+					</a>
+				)}
 				<div class="tags">
 					{tags.map((tag) => <span class="tag">{tag}</span>)}
 				</div>

@@ -4,6 +4,11 @@ export interface ProjectImage {
 	caption?: string;
 }
 
+export interface ProjectLink {
+	label: string;
+	url: string;
+}
+
 export interface Project {
 	slug: string;
 	title: string;
@@ -12,6 +17,7 @@ export interface Project {
 	tags: string[];
 	highlights: string[];
 	images: ProjectImage[];
+	link?: ProjectLink;
 }
 
 export const projects: Project[] = [
@@ -75,6 +81,7 @@ export const projects: Project[] = [
 			'Designed a novel printer architecture with a moving X/Y bed to minimize extruder motion, plus a syringe-pump extruder for viscous feedstock',
 			'Combined existing 3D-print architectures with custom mechanisms, from sketch to CAD to a working printer',
 		],
+		link: { label: 'Read the thesis', url: 'https://hdl.handle.net/1721.1/162451' },
 		images: [
 			{ src: '/projects/undergraduate-research/01-printer-photo.jpg', alt: 'Finished syringe-pump 3D printer', caption: 'Completed syringe-pump 3D printer' },
 			{ src: '/projects/undergraduate-research/02-exploded-sketch.jpg', alt: 'Hand-drawn exploded sketch of the printer', caption: 'Early design sketches' },
