@@ -9,6 +9,11 @@ export interface ProjectLink {
 	url: string;
 }
 
+export interface ProjectVideo {
+	title: string;
+	youtubeId: string;
+}
+
 export interface Project {
 	slug: string;
 	title: string;
@@ -19,6 +24,7 @@ export interface Project {
 	highlights: string[];
 	images: ProjectImage[];
 	link?: ProjectLink;
+	video?: ProjectVideo;
 }
 
 export const projects: Project[] = [
@@ -148,6 +154,7 @@ export const projects: Project[] = [
 			"Led a 40+ student mechanical team through a full year design-build cycle, fielding MIT's first car to compete in every event since 2019.",
 		year: '2023–2024',
 		tags: ['Leadership', 'Vehicle Design', 'Manufacturing'],
+		video: { title: 'MY24 Hype Video, by Keiji Imai', youtubeId: 'xGB0z81MeCg' },
 		highlights: [
 			'Mechanical lead for Model Year 24: 40+ mechanical students plus electrical, software, and aero teams',
 			'Owned major vehicle-level decisions: center of gravity, battery capacity/cooling, rear powertrain packaging',
